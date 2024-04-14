@@ -1,20 +1,18 @@
-from typing import Mapping, Any, cast
+"""Config flow for Light Sync Group integration."""
+from collections.abc import Mapping
+from typing import Any, cast
+
 import voluptuous as vol
 
 from homeassistant.components import light
-from homeassistant.helpers.schema_config_entry_flow import (
-    SchemaConfigFlowHandler,
-    SchemaFlowFormStep,
-)
+from homeassistant.const import CONF_ENTITIES
 from homeassistant.helpers import selector
 from homeassistant.helpers.schema_config_entry_flow import (
     SchemaConfigFlowHandler,
     SchemaFlowFormStep,
 )
-from homeassistant.const import CONF_ENTITIES
 
 from .const import DOMAIN
-
 
 OPTIONS_SCHEMA = vol.Schema(
     {

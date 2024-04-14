@@ -1,14 +1,16 @@
-from typing import Any
+"""Light Sync Group integration implementations."""
 import logging
+from typing import Any
 
 import voluptuous as vol
 
-from homeassistant.components.binary_sensor import (
-    PLATFORM_SCHEMA,
-)
+from homeassistant.components import light
+from homeassistant.components.binary_sensor import PLATFORM_SCHEMA
+from homeassistant.components.group.light import FORWARDED_ATTRIBUTES, LightGroup
+from homeassistant.components.light import ATTR_TRANSITION, ColorMode
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     ATTR_ENTITY_ID,
-    ATTR_SUPPORTED_FEATURES,
     CONF_ENTITIES,
     CONF_NAME,
     CONF_UNIQUE_ID,
@@ -19,21 +21,14 @@ from homeassistant.const import (
     STATE_UNAVAILABLE,
     STATE_UNKNOWN,
 )
-from homeassistant.helpers import config_validation as cv
-from homeassistant.components import light
-from homeassistant.core import Event, HomeAssistant, callback
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, EventType
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers import config_validation as cv, entity_registry as er
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.components.light import ColorMode, ATTR_TRANSITION
-from homeassistant.components.group.entity import GroupEntity
-from homeassistant.components.group.light import LightGroup, FORWARDED_ATTRIBUTES
 from homeassistant.helpers.event import (
     EventStateChangedData,
     async_track_state_change_event,
 )
-from homeassistant.helpers import config_validation as cv, entity_registry as er
-from homeassistant.config_entries import ConfigEntry
-
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, EventType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -53,7 +48,7 @@ async def async_setup_platform(
     async_add_entities: AddEntitiesCallback,
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
-    """Set up the light sync group."""   
+    """Set up the Light Sync Group."""
     async_add_entities(
         [
             LightSyncGroup(
@@ -70,7 +65,7 @@ async def async_setup_entry(
     config_entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Initialize Light Group config entry."""
+    """Initialize Light Sync Group config entry."""
     registry = er.async_get(hass)
     entities = er.async_validate_entity_ids(
         registry, config_entry.options[CONF_ENTITIES]
@@ -222,7 +217,7 @@ class LightSyncGroup(LightGroup):
         # # Bitwise-and the supported features with the GroupedLight's features
         # # so that we don't break in the future when a new feature is added.
         # self._attr_supported_features &= SUPPORT_GROUP_LIGHT
-        
+
     @callback
     async def _watched_entity_change(
         self, event: EventType[EventStateChangedData]
