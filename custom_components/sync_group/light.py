@@ -31,6 +31,9 @@ from homeassistant.helpers.event import (
     EventStateChangedData,
     async_track_state_change_event,
 )
+from homeassistant.helpers import config_validation as cv, entity_registry as er
+from homeassistant.config_entries import ConfigEntry
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -60,6 +63,21 @@ async def async_setup_platform(
                 config[CONF_ENTITIES],
             )
         ]
+    )
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
+    """Initialize Light Group config entry."""
+    registry = er.async_get(hass)
+    entities = er.async_validate_entity_ids(
+        registry, config_entry.options[CONF_ENTITIES]
+    )
+
+    async_add_entities(
+        [LightSyncGroup(hass, config_entry.entry_id, config_entry.title, entities)]
     )
 
 

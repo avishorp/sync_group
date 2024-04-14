@@ -1,0 +1,42 @@
+{
+  "title": "Light Sync Group",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Light Sync Group",
+        "description": "Create a group that synchronizes the state of its entities.",
+        "data": {
+          "entity_id": "Input entities",
+          "name": "Name",
+          "icon": "Icon"
+        }
+      },
+      "attr": {
+        "data": {
+          "attribute": "Attribute",
+          "device_class": "Device Class",
+          "state_class": "State Class",
+          "unit_of_measurement": "Unit of Measurement"
+        },
+        "data_description": {
+          "attribute": "Select the attribute that you would like to use as a sensor.",
+          "unit_of_measurement": "Select a pre-defined unit of measurement or customize your own."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "device_class": "[%key:component::attribute_as_sensor::config::step::attr::data::device_class%]",
+          "state_class": "[%key:component::attribute_as_sensor::config::step::attr::data::state_class%]",
+          "unit_of_measurement": "[%key:component::attribute_as_sensor::config::step::attr::data::unit_of_measurement%]"
+        },
+        "data_description": {
+          "unit_of_measurement": "[%key:component::attribute_as_sensor::config::step::attr::data_description::unit_of_measurement%]"
+        }
+      }
+    }
+  }
+}
