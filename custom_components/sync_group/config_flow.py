@@ -14,6 +14,7 @@ from homeassistant.helpers.schema_config_entry_flow import (
 
 from .const import DOMAIN
 
+
 OPTIONS_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_ENTITIES): selector.EntitySelector(
