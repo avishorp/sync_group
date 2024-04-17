@@ -84,7 +84,7 @@ class LightSyncGroup(LightGroup):
         entity_ids: list[str],
     ) -> None:
         """Initialize a light sync group."""
-        super().__init__(unique_id, name, entity_ids, True)
+        super().__init__(unique_id, name, entity_ids, False)
 
         # Install a state event listener to track changes
         unsub = async_track_state_change_event(
