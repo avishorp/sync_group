@@ -1,0 +1,27 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "entities": "Members",
+                    "hide_members": "Hide members",
+                    "name": "Name"
+                }
+            },
+            "title": "Add Group",
+            "description": "Select entities to be included in the group"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "entities": "Members",
+                    "hide_members": "Hide members"    
+                },
+                "description": "Select entities to be included in the group"
+            }
+        }
+    },
+    "title": "Light Sync Group"
+}
