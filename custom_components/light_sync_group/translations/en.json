@@ -6,10 +6,10 @@
                     "entities": "Members",
                     "hide_members": "Hide members",
                     "name": "Name"
-                }
-            },
-            "title": "Add Group",
-            "description": "Select entities to be included in the group"
+                },
+                "title": "Add Group",
+                "descriptionx": "Select entities to be included in the group"
+            }
         }
     },
     "options": {
