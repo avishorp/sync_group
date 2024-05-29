@@ -8,7 +8,7 @@
                     "name": "Name"
                 },
                 "title": "Add Group",
-                "descriptionx": "Select entities to be included in the group"
+                "description": "Select entities to be included in the group"
             }
         }
     },
