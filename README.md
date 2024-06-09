@@ -13,10 +13,25 @@ to all of the members.
 ## Installation
 
 ### Installation via HACS
-TBD
+1. Install HACS (if not already installed)
+2. Open the HACS paged and click the "Integrations" section.
+3. Click on the three dots on the top right corner. Select "Custom Repositories".
+4. In the dialog, enter the repository URL: `https://github.com/avishorp/sync_group.git`.
+   For the category, select "Integration".
+5. Click "Add". HACS will download the content of the repository.
+6. Search for "sync group" in HACS' integrations tab and add it.
+
 
 ### Manual Installation
-TBD
+1. Open the configuration folder of your Home Assistant installation.
+2. Download or clone this repository into a separate location.
+3. Copy the content of `custom_components` from the repository to the configuration
+   directory. A directory named `custom_components` may already exist, the content of
+   the repository is not supposed to overwrite any file stored in it (unless you are
+   upgrading to a newer version).
+4. Restart Home Assistant. After restart, the Light Sync Group should become available.
+   See below for configuration instructions.
+
 
 ## Configuration
 
@@ -35,3 +50,4 @@ light:
           - light.member1
           - light.member2
 ```
+
